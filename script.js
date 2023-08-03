@@ -3,17 +3,15 @@ let button = document.getElementById('button-addon2');
 
 async function downloadMp3(query) {
 	let serverURL = 'https://server-files.vercel.app'
-	// let serverURL = '/download'
-	const res = await fetch(`${serverURL}/download?url=${encodeURIComponent(query)}`);
-	// const res = await fetch(`${serverURL}?url=${encodeURIComponent(query)}`);
-	if(res.status == 200) {
-		var a = document.createElement('a');
-		a.href = `${serverURL}/download?url=${query}`;
-		a.setAttribute('download', '');
-		a.click();
-	} else if(res.status == 400) {
-		alert("Invalid url");
-	}
+	const download_url = await fetch(`${serverURL}/download?url=${encodeURIComponent(query)}`);
+
+	let a = document.createElement('a');
+	a.href = download_url;
+	a.setAttribute('download', '');
+
+	document.body.appendChild(a); // Append the anchor element to the DOM
+	a.click(); // Simulate click to trigger the download
+	document.body.removeChild(a); // Remove the anchor element after download
 }
 
 
