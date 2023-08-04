@@ -3,7 +3,8 @@ let button = document.getElementById('button-addon2');
 
 async function downloadMp3(query) {
 	let serverURL = 'https://server-files.vercel.app'
-	const download_url = await fetch(`${serverURL}/download?url=${encodeURIComponent(query)}`);
+	// const download_url = await fetch(`${serverURL}/download?url=${encodeURIComponent(query)}`);
+	const download_url = await fetch(`${serverURL}/download?url=${query}`);
 
 	let a = document.createElement('a');
 	a.href = download_url;
